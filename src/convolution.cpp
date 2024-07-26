@@ -1,9 +1,3 @@
-/*
-run:
-cd ../ && ./run.sh
-*/
-
-
 #include <stdio.h>
 #include <stdlib.h>
 #include <cstdint>

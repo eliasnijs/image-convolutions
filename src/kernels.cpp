@@ -1,6 +1,6 @@
 //// define a kernel with the following signature:
 //// KERNEL(id, w, h, c, ...data), make sure to declare the kernel in the
-//// KernelType enum and the KERNEL_TYPE_REPR_TABLE
+//// KernelType enum
 
 ////////////////////////////////////////////////////////////////////////////////
 //// KERNELS DECLARATION
