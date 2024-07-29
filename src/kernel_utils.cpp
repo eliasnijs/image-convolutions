@@ -1,15 +1,16 @@
 struct Kernel {
     KernelType  id;
     I32  w, h, c;
+    F32  factor;
     F32  *data;
 };
 
 global_variable Kernel *KERNELS[KERNEL_TYPE_COUNT] = {};
 global_variable char *KERNEL_TYPE_REPR_TABLE[KERNEL_TYPE_COUNT] = {};
 
-#define KERNEL(id, w, h, c, ...) \
+#define KERNEL(id, w, h, c, s, ...) \
     global_variable F32 kernel_##id##_data[] = { __VA_ARGS__ }; \
-    global_variable Kernel id##_KERNEL = { KERNEL_TYPE_##id, w, h, c, kernel_##id##_data }; \
+    global_variable Kernel id##_KERNEL = { KERNEL_TYPE_##id, w, h, c, s, kernel_##id##_data }; \
     global_variable Kernel *id##_KERNEL_PTR = &id##_KERNEL; \
     Kernel *_init_##id() { \
 	    KERNELS[KERNEL_TYPE_##id] = id##_KERNEL_PTR; \
@@ -44,3 +45,4 @@ printK(KernelType id) {
 		printf("]\n");
 	}
 }
+

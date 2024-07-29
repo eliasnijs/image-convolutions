@@ -1,5 +1,5 @@
 //// define a kernel with the following signature:
-//// KERNEL(id, w, h, c, ...data), make sure to declare the kernel in the
+//// KERNEL(id, w, h, c, factor, data...), make sure to declare the kernel in the
 //// KernelType enum
 
 ////////////////////////////////////////////////////////////////////////////////
@@ -24,13 +24,14 @@ enum KernelType {
 ////////////////////////////////////////////////////////////////////////////////
 //// KERNELS IMPLEMENTATIONS
 
-KERNEL(SOBEL, 3, 3, 1,
+
+KERNEL(SOBEL, 3, 3, 1, 1.0f,
     -1,  0,  1,
     -2,  0,  2,
     -1,  0,  1
 );
 
-KERNEL(GAUSSIAN_5, 5, 5, 1,
+KERNEL(GAUSSIAN_5, 5, 5, 1, 1.0f/256.0f,
     1,  4,  6,  4,  1,
     4, 16, 24, 16,  4,
     6, 24, 36, 24,  6,
@@ -38,7 +39,7 @@ KERNEL(GAUSSIAN_5, 5, 5, 1,
     1,  4,  6,  4,  1
 );
 
-KERNEL(GAUSSIAN_9, 9, 9, 1,
+KERNEL(GAUSSIAN_9, 9, 9, 1, 1.0f/512.0f,
     1,  1,  2,  2,  2,  2,  2,  1,  1,
     1,  2,  2,  4,  4,  4,  2,  2,  1,
     2,  2,  4,  4,  8,  4,  4,  2,  2,
@@ -50,46 +51,45 @@ KERNEL(GAUSSIAN_9, 9, 9, 1,
     1,  1,  2,  2,  2,  2,  2,  1,  1
 );
 
-KERNEL(LAPLACIAN, 3, 3, 1,
+KERNEL(LAPLACIAN, 3, 3, 1, 1.0f,
     0,  1,  0,
     1, -4,  1,
     0,  1,  0
 );
 
-KERNEL(AVERAGE, 3, 3, 1,
-    1/9.0f, 1/9.0f, 1/9.0f,
-    1/9.0f, 1/9.0f, 1/9.0f,
-    1/9.0f, 1/9.0f, 1/9.0f
+KERNEL(AVERAGE, 3, 3, 1, 1.0f/9.0f,
+    1, 1, 1,
+    1, 1, 1,
+    1, 1, 1
 );
 
-KERNEL(SHARPEN, 3, 3, 1,
+KERNEL(SHARPEN, 3, 3, 1, 1.0f,
      0, -1,  0,
     -1,  5, -1,
      0, -1,  0
 );
 
-KERNEL(EMBOSS, 3, 3, 1,
+KERNEL(EMBOSS, 3, 3, 1, 1.0f,
     -2, -1,  0,
     -1,  1,  1,
      0,  1,  2
 );
 
-KERNEL(EDGE, 3, 3, 1,
+KERNEL(EDGE, 3, 3, 1, 1.0f,
     -1, -1, -1,
     -1,  8, -1,
     -1, -1, -1
 );
 
-KERNEL(SHADOW, 3, 3, 1,
+KERNEL(SHADOW, 3, 3, 1, 1.0f,
     0,  0,  0,
     0,  1,  0,
     0,  0, -1
 );
 
-KERNEL(OUTLINE, 3, 3, 1,
+KERNEL(OUTLINE, 3, 3, 1, 1.0f,
     0,  0,  0,
     0,  1,  0,
     0,  0,  0
 );
-
 

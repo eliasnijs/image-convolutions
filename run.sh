@@ -1,7 +1,15 @@
-#!/bin/sh
+#!/bin/bash
 
-cp resources/lena.png ./out.png
-./a.out out.png 3
-./a.out out.png 1
-feh ./out.png
+INPUT="resources/engine.png"
+OPERATIONS="2 8"
+OUTPUT="out.png"
+
+cp $INPUT $OUTPUT
+
+for i in $OPERATIONS
+do
+  ./a.out $OUTPUT $i
+done
+
+feh $OUTPUT &
 
